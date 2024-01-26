@@ -73,7 +73,7 @@ the complete version in the `solution` subdirectory.
    Codec Server integration, the Temporal Web UI cannot decode output, and
    results are displayed encoded:
 
-   ![Encoded Workflow Output in Web UI](images/webui-encoded.png)
+   ![Encoded Workflow Output in Web UI](images/encoded-output.png)
 
    To do this, you first need to enable
    [CORS](https://en.wikipedia.org/wiki/Cross-origin_resource_sharing), a common
@@ -84,8 +84,38 @@ the complete version in the `solution` subdirectory.
    additional command line parameter, `--web`, to conditionally enable CORS.
    Restart the Codec Server with the `--web` flag: `go run ./codec-server --web
    localhost:8233`.
-2. Now you can proceed to integrate your Codec Server with the Web UI.
+2. Now you can proceed to integrate your Codec Server with the Web UI. You
+   should already have a local Temporal Cluster running that you can access in a
+   browser at `http://localhost:8233` by default. In the top-right corner of the
+   Web UI, you should see a 3D glasses icon, where you can use access the Codec
+   Server settings:
 
+   ![Codec Server settings icon](images/configure-codec-server-button.png)
+
+   (The "default" label may be in a different place in the top nav depending on
+   your version of the Temporal CLI, and represents the default Namespace --
+   remember that Codecs are configured per-Namespace.) In the Codec Server
+   settings menu, add the path to your Codec Server, which should be
+   `http://localhost:8081` by default. You do not need to toggle the user access
+   token settings if you aren't using authentication.
+
+   ![Codec Server settings](images/codec-server-settings.png)
+
+   Note that you can toggle the "Use Cluster-level setting" option to save this
+   Codec Server for all users of this cluster, or only for you, which would be
+   especially relevant if you were running a `localhost` Codec Server with a
+   remote Temporal Cluster. Click the "Apply" button. The 3D glasses in the
+   top nav should now be colorized, indicating a successful connection:
+
+   ![Codec Server enabled](images/codec-server-enabled.png)
+
+3. When you navigate back to your Workflow History and scroll to the "Input
+   and Results" section, you should find your payload automatically decoded by
+   your Codec Server:
+
+   ![Decoded Workflow Output in Web UI](images/decoded-output.png)
+
+   You now have a working Codec Server integration with the Temporal Web UI.
 
 
 ### This is the end of the exercise.
