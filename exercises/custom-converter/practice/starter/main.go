@@ -1,0 +1,53 @@
+package main
+
+import (
+	"context"
+	"log"
+
+	temporalconverters "github.com/temporalio/edu-converters-go-code/exercises/codec-server/solution/"
+	"go.temporal.io/sdk/client"
+)
+
+func main() {
+	// The client is a heavyweight object that should be created once per process.
+	c, err := client.Dial(client.Options{
+		// Set DataConverter here to ensure that workflow inputs and results are
+		// encoded as required.
+		// TODO Part A: Set a `DataConverter` key to use the `DataConverter` from `data_converter.go`.
+		// This overrides the stock behavior — otherwise, the default data converter will be used.
+		// TODO Part B: Set a `FailureConverter` key to use an instance of
+		// `temporal.NewDefaultFailureConverter` with a single argument,
+		// `temporal.DefaultFailureConverterOptions{}`, and in the options array, set
+		// `EncodeCommonAttributes: true`.
+	})
+	if err != nil {
+		log.Fatalln("Unable to create client", err)
+	}
+	defer c.Close()
+
+	workflowOptions := client.StartWorkflowOptions{
+		ID:        "converters_workflowID",
+		TaskQueue: "converters",
+	}
+
+	// The workflow input "My Compressed Friend" will be encoded by the codec before being sent to Temporal
+	we, err := c.ExecuteWorkflow(
+		context.Background(),
+		workflowOptions,
+		temporalconverters.Workflow,
+		"Plain text input",
+	)
+	if err != nil {
+		log.Fatalln("Unable to execute workflow", err)
+	}
+
+	log.Println("Started workflow", "WorkflowID", we.GetID(), "RunID", we.GetRunID())
+
+	// Synchronously wait for the workflow completion.
+	var result string
+	err = we.Get(context.Background(), &result)
+	if err != nil {
+		log.Fatalln("Unable get workflow result", err)
+	}
+	log.Println("Workflow result:", result)
+}
