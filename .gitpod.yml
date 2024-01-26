@@ -42,7 +42,7 @@ tasks:
     command: |
       source /workspace/edu-converters-go-code/.bash_aliases
       export TEMPORAL_CORS_ORIGINS=http://localhost:3000
-      /workspace/bin/temporal server start-dev --dynamic-config-value frontend.workerVersioningDataAPIs=true    --dynamic-config-value frontend.workerVersioningWorkflowAPIs=true --dynamic-config-value worker.buildIdScavengerEnabled=true --ui-port 8080 --db-filename $HOME/.cluster-persistence.db
+      /workspace/bin/temporal server start-dev --dynamic-config-value frontend.workerVersioningDataAPIs=true    --dynamic-config-value frontend.workerVersioningWorkflowAPIs=true --dynamic-config-value worker.buildIdScavengerEnabled=true --db-filename $HOME/.cluster-persistence.db
     openMode: tab-after
 
 ports:
@@ -56,7 +56,7 @@ ports:
     port: 8081
     onOpen: ignore
   - name: Temporal Web UI v2
-    port: 8080 # temporal UI
+    port: 8233 # temporal UI
     description: New (v2) Temporal Web UI
     onOpen: ignore
     visibility: private

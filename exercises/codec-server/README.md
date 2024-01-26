@@ -87,9 +87,6 @@ the complete version in the `solution` subdirectory.
 2. Now you can proceed to integrate your Codec Server with the Web UI.
 
 
-## Part C: Securely Return Decoded Results
-
-1. 
 
 ### This is the end of the exercise.
 
