@@ -92,12 +92,9 @@ the complete version in the `solution` subdirectory.
 
    ![Codec Server settings icon](images/configure-codec-server-button.png)
 
-   (The "default" label may be in a different place in the top nav depending on
-   your version of the Temporal CLI, and represents the default Namespace --
-   remember that Codecs are configured per-Namespace.) In the Codec Server
-   settings menu, add the path to your Codec Server, which should be
-   `http://localhost:8081` by default. You do not need to toggle the user access
-   token settings if you aren't using authentication.
+   In the Codec Server settings menu, add the path to your Codec Server, which
+   should be `http://localhost:8081` by default. You do not need to toggle the
+   user access token settings if you aren't using authentication.
 
    ![Codec Server settings](images/codec-server-settings.png)
 
@@ -109,7 +106,7 @@ the complete version in the `solution` subdirectory.
 
    ![Codec Server enabled](images/codec-server-enabled.png)
 
-3. When you navigate back to your Workflow History and scroll to the "Input
+1. When you navigate back to your Workflow History and scroll to the "Input
    and Results" section, you should find your payload automatically decoded by
    your Codec Server:
 
