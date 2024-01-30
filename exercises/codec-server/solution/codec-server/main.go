@@ -8,7 +8,7 @@ import (
 	"os/signal"
 	"strconv"
 
-	temporalconverters "github.com/temporalio/edu-converters-go-code/exercises/codec-server/solution"
+	edu_converters_go_code "github.com/temporalio/edu-converters-go-code/exercises/codec-server/solution"
 
 	"go.temporal.io/sdk/converter"
 	"go.temporal.io/server/common/log"
@@ -79,7 +79,7 @@ func main() {
 	// Set codecs per namespace here.
 	// Only handle codecs for the default namespace in this example.
 	codecs := map[string][]converter.PayloadCodec{
-		"default": {temporalconverters.NewPayloadCodec()},
+		"default": {edu_converters_go_code.NewPayloadCodec()},
 	}
 
 	handler := newPayloadCodecNamespacesHTTPHandler(codecs)

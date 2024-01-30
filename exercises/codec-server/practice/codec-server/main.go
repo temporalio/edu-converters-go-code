@@ -8,7 +8,7 @@ import (
 	"os/signal"
 	"strconv"
 
-	// TODO Part A: Import the `temporalconverters` package used by the other code samples in this repo.
+	// TODO Part A: Import the `edu_converters_go_code` package used by the other code samples.
 	// Don't forget you can import Go modules from GitHub repos as `modulename url-to-directory`.
 
 	"go.temporal.io/sdk/converter"

@@ -1,4 +1,4 @@
-package temporalconverters
+package edu_converters_go_code
 
 import (
 	"github.com/golang/snappy"

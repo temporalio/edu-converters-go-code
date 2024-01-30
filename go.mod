@@ -1,4 +1,4 @@
-module temporalconverters
+module edu_converters_go_code
 
 go 1.19
 
