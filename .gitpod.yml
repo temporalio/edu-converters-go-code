@@ -55,9 +55,9 @@ ports:
   - name: Codec server
     port: 8081
     onOpen: ignore
-  - name: Temporal Web UI v2
+  - name: Temporal Web UI
     port: 8233 # temporal UI
-    description: New (v2) Temporal Web UI
+    description: Temporal Web UI
     onOpen: ignore
     visibility: private
 

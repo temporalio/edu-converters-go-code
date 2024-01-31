@@ -87,7 +87,7 @@ the complete version in the `solution` subdirectory.
 2. Now you can proceed to integrate your Codec Server with the Web UI. You
    should already have a local Temporal Cluster running that you can access in a
    browser at `http://localhost:8233` by default. In the top-right corner of the
-   Web UI, you should see a 3D glasses icon, where you can use access the Codec
+   Web UI, you should see a 3D glasses icon, where you can access the Codec
    Server settings:
 
    ![Codec Server settings icon](images/configure-codec-server-button.png)

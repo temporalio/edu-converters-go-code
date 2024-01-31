@@ -30,7 +30,6 @@ func main() {
 		TaskQueue: "converters",
 	}
 
-	// The workflow input "My Compressed Friend" will be encoded by the codec before being sent to Temporal
 	we, err := c.ExecuteWorkflow(
 		context.Background(),
 		workflowOptions,
