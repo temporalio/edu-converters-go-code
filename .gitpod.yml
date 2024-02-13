@@ -20,7 +20,7 @@ tasks:
       echo "Use this terminal to run commands.."
       source /workspace/edu-converters-go-code/.bash_aliases
     openMode: split-right
-  - name: Terminal
+  - name: Codec Server
     command: |
       gp open README.md
       clear
