@@ -66,7 +66,8 @@ the complete version in the `solution` subdirectory.
    Data Converter.
 2. To add a Custom Data Converter, you don't need to change anything in your
    Workflow code. You only need to add a `DataConverter` parameter to
-   `client.Dial()` where it is used in both `starter.go` and `worker.go`.
+   `client.Dial()` where it is used in both `starter/main.go` and
+   `worker/main.go`.
 3. Next, take a look in `data_converter.go`. This contains the Custom Converter
    code you'll be using. The `Encode()` function should marshal a payload to
    JSON then compress it using Go's [snappy](https://github.com/google/snappy)
@@ -104,7 +105,7 @@ the complete version in the `solution` subdirectory.
    Payload that's run through your codec. To do this, you can override the
    default Failure Converter with a single additional parameter,
    `EncodeCommonAttributes: true`. Make this change to `client.Dial()` where it
-   is used in both `starter.go` and `worker.go`, as you did before.
+   is used in both `starter/main.go` and `worker/main.go`, as you did before.
 2. To test your Failure Converter, change your Workflow to return an artificial
    error. Change the `ExecuteActivity` call to throw an error where there isn't
    one, like so:
@@ -169,8 +170,8 @@ the complete version in the `solution` subdirectory.
    },
    ```
 
-   Make this change to the `client.Options{}` block in both `starter.go` and
-   `worker.go`, then restart your worker and re-run your Workflow.
+   Make this change to the `client.Options{}` block in both `starter/main.go` and
+   `worker/main.go`, then restart your worker and re-run your Workflow.
 2. Run `temporal workflow show -w converters_workflowID` once more to get what will
    now be stock, unencrypted output following your Composite Data Converter logic:
 
