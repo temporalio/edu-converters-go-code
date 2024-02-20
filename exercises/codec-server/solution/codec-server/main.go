@@ -8,7 +8,7 @@ import (
 	"os/signal"
 	"strconv"
 
-	edu_converters_go_code "github.com/temporalio/edu-converters-go-code/exercises/codec-server/solution"
+	edu_converters_go_code "edu-converters-go-code/exercises/codec-server/solution"
 
 	"go.temporal.io/sdk/converter"
 	"go.temporal.io/server/common/log"
