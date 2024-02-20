@@ -6,7 +6,6 @@ import (
 
 	// TODO Part B: Add the `errors` package to your imports.
 
-	"github.com/google/uuid"
 	"go.temporal.io/sdk/activity"
 	"go.temporal.io/sdk/workflow"
 )
@@ -18,30 +17,12 @@ func Workflow(ctx workflow.Context, input string) (string, error) {
 	ao := workflow.ActivityOptions{
 		StartToCloseTimeout: 10 * time.Second,
 	}
-	lao := workflow.LocalActivityOptions{
-		StartToCloseTimeout: 10 * time.Second,
-	}
 	ctx = workflow.WithActivityOptions(ctx, ao)
-	ctx = workflow.WithLocalActivityOptions(ctx, lao)
 
 	logger := workflow.GetLogger(ctx)
 	logger.Info("Converter workflow started", "input", input)
 
 	var result string
-
-	err := workflow.SideEffect(ctx, func(ctx workflow.Context) interface{} {
-		return uuid.New()
-	}).Get(&result)
-	if err != nil {
-		logger.Error("SideEffect failed.", "Error", err)
-		return "", err
-	}
-
-	err = workflow.ExecuteLocalActivity(ctx, Activity, input).Get(ctx, &result)
-	if err != nil {
-		logger.Error("Local Activity failed.", "Error", err)
-		return "", err
-	}
 
 	err = workflow.ExecuteActivity(ctx, Activity, input).Get(ctx, &result)
 	// TODO Part B: Return an artificial error.

@@ -2,7 +2,7 @@
 
 During this exercise, you will: 
 
-* Output typical payloads from a Temporal Workflow using the default Data Converters
+* Output typical payloads from a Temporal Workflow using the default Data Converter
 * Implement a Custom Data Converter that encrypts Workflow output
 * Implement a Failure Converter and demonstrate parsing its output
 * Implement a Composite Data Converter that combines multiple conversion steps
@@ -15,8 +15,7 @@ the complete version in the `solution` subdirectory.
 
 ## Part A: Implement a Custom Data Converter
 
-1. Similar to other Temporal features like opting in to Worker Versioning,
-   defining a Custom Data Converter is only a one-line change to your existing
+1. Defining a Custom Data Converter is a straightforward change to your existing
    Worker and Starter code. The example in the `practice` subdirectory of this
    exercise is missing the necessary change to use a Custom Data Converter,
    meaning that you can run it out of the box, and produce JSON output using the
@@ -27,13 +26,13 @@ the complete version in the `solution` subdirectory.
    go run worker/main.go
    ```
 
-   Next, run the Workflow starter:
+2. Next, run the Workflow starter:
 
    ```shell
    go run starter/main.go
    ```
 
-   After that, you can use the `temporal` CLI to show the Workflow result:
+3. After that, you can use the `temporal` CLI to show the Workflow result:
 
    ```shell
    temporal workflow show -w converters_workflowID
@@ -64,17 +63,17 @@ the complete version in the `solution` subdirectory.
    You should now have an idea of how this Workflow runs ordinarily — it outputs
    the string "Received Plain text input". In the next step, you'll add a Custom
    Data Converter.
-2. To add a Custom Data Converter, you don't need to change anything in your
+4. To add a Custom Data Converter, you don't need to change anything in your
    Workflow code. You only need to add a `DataConverter` parameter to
    `client.Dial()` where it is used in both `starter/main.go` and
    `worker/main.go`.
-3. Next, take a look in `data_converter.go`. This contains the Custom Converter
+5. Next, take a look in `data_converter.go`. This contains the Custom Converter
    code you'll be using. The `Encode()` function should marshal a payload to
    JSON then compress it using Go's [snappy](https://github.com/google/snappy)
    codec, and set the file metadata. The `Decode()` function does the same thing
    in reverse. Add the missing calls to the `Encode()` function (you can use the
    `Decode()` function as a hint).
-4. Now you can re-run the Workflow with your Custom Converter. Stop your Worker
+6. Now you can re-run the Workflow with your Custom Converter. Stop your Worker
    (with `Ctrl+C` in a blocking terminal) and restart it with `go run
    worker/main.go`, then re-run the Workflow with `go run starter/main.go`.
    Finally, get the result again with `temporal workflow show -w

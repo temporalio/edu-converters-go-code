@@ -106,7 +106,7 @@ the complete version in the `solution` subdirectory.
 
    ![Codec Server enabled](images/codec-server-enabled.png)
 
-1. When you navigate back to your Workflow History and scroll to the "Input
+3. When you navigate back to your Workflow History and scroll to the "Input
    and Results" section, you should find your payload automatically decoded by
    your Codec Server:
 
