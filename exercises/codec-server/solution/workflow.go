@@ -22,7 +22,7 @@ func Workflow(ctx workflow.Context, input string) (string, error) {
 
 	var result string
 
-	err = workflow.ExecuteActivity(ctx, Activity, input).Get(ctx, &result)
+	err := workflow.ExecuteActivity(ctx, Activity, input).Get(ctx, &result)
 	if err != nil {
 		logger.Error("Activity failed.", "Error", err)
 		return "", err
