@@ -74,7 +74,7 @@ the complete version in the `solution` subdirectory.
    codec, and set the file metadata. The `Decode()` function does the same thing
    in reverse. Add the missing calls to the `Encode()` function (you can use the
    `Decode()` function as a hint).
-4. Now you can re-run the Workflow with your Custom Conveter. Stop your Worker
+4. Now you can re-run the Workflow with your Custom Converter. Stop your Worker
    (with `Ctrl+C` in a blocking terminal) and restart it with `go run
    worker/main.go`, then re-run the workflow with `go run starter/main.go`.
    Finally, get the result again with `temporal workflow show -w
