@@ -24,7 +24,7 @@ func Workflow(ctx workflow.Context, input string) (string, error) {
 
 	var result string
 
-	err = workflow.ExecuteActivity(ctx, Activity, input).Get(ctx, &result)
+	err := workflow.ExecuteActivity(ctx, Activity, input).Get(ctx, &result)
 	// TODO Part B: Return an artificial error.
 	if err != nil {
 		logger.Error("Activity failed.", "Error", err)
