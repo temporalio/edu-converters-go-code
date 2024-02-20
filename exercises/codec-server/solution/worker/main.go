@@ -3,7 +3,7 @@ package main
 import (
 	"log"
 
-	temporalconverters "github.com/temporalio/edu-converters-go-code/exercises/codec-server/solution/"
+	temporalconverters "edu-converters-go-code/exercises/codec-server/solution"
 	"go.temporal.io/sdk/client"
 	"go.temporal.io/sdk/worker"
 )
