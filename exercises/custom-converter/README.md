@@ -17,7 +17,7 @@ the complete version in the `solution` subdirectory.
 
 1. Similar to other Temporal features like opting in to Worker Versioning,
    defining a Custom Data Converter is only a one-line change to your existing
-   Worker and Starter code. The Example in the Practice subdirectory of this
+   Worker and Starter code. The example in the `practice` subdirectory of this
    exercise is missing the necessary change to use a Custom Data Converter,
    meaning that you can run it out of the box, and produce JSON output using the
    Default Data Converter. You'll do this first, so you have an idea of the
