@@ -1,4 +1,4 @@
-module edu_converters_go_code
+module edu-converters-go-code
 
 go 1.19
 
