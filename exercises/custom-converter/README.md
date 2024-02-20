@@ -101,7 +101,7 @@ the complete version in the `solution` subdirectory.
    explicitly enable encoding these common attributes on failures. If your
    errors might contain sensitive information, you can encrypt the message and
    stack trace by configuring the default Failure Converter to use your encoded
-   attributes, in which case it moves your message and stack_trace fields to a
+   attributes, in which case it moves your `message` and `stack_trace` fields to a
    Payload that's run through your codec. To do this, you can override the
    default Failure Converter with a single additional parameter,
    `EncodeCommonAttributes: true`. Make this change to `client.Dial()` where it
