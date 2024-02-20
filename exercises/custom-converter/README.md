@@ -76,7 +76,7 @@ the complete version in the `solution` subdirectory.
    `Decode()` function as a hint).
 4. Now you can re-run the Workflow with your Custom Converter. Stop your Worker
    (with `Ctrl+C` in a blocking terminal) and restart it with `go run
-   worker/main.go`, then re-run the workflow with `go run starter/main.go`.
+   worker/main.go`, then re-run the Workflow with `go run starter/main.go`.
    Finally, get the result again with `temporal workflow show -w
    converters_workflowID`. This time, your output will be encoded:
 
