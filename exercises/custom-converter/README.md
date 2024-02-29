@@ -5,7 +5,6 @@ During this exercise, you will:
 * Output typical payloads from a Temporal Workflow using the default Data Converter
 * Implement a Custom Data Converter that encrypts Workflow output
 * Implement a Failure Converter and demonstrate parsing its output
-* Implement a Composite Data Converter that combines multiple conversion steps
 
 Make your changes to the code in the `practice` subdirectory (look for 
 `TODO` comments that will guide you to where you should make changes to 
@@ -129,60 +128,6 @@ the complete version in the `solution` subdirectory.
    Status: FAILED
    Failure: &Failure{Message:Encoded failure,Source:GoSDK,StackTrace:,Cause:nil,FailureType:Failure_ApplicationFailureInfo,}
    ```
-
-
-## Part C: Implement a Composite Data Converter
-
-1. Finally, you can implement a Composite Data Converter. A Composite Data
-   Converter is used to apply custom, type-specific Payload Converters in a
-   specified order. Rather than overriding the default Data Converter and
-   Failure Converter as you did in the last two parts of this exercise, you can
-   construct a Composite Data Converter that provies a set of rules in a custom
-   order. For example, the default Go Data Converter looks like this:
-
-   ```go
-   defaultDataConverter = NewCompositeDataConverter(
-      NewNilPayloadConverter(),
-      NewByteSlicePayloadConverter(),
-      NewProtoJSONPayloadConverter(),
-      NewProtoPayloadConverter(),
-      NewJSONPayloadConverter(),
-   )
-   ```
-
-   Order is important. Both the `ProtoJsonPayload` and `ProtoPayload` converters
-   check for the same `proto.Message` interface. The first match will always be
-   used for serialization. Deserialization is controlled by metadata, therefore
-   both converters can deserialize the corresponding data format (JSON or binary
-   proto). For this exercise, you can try just omitting some of those converter
-   interfaces, if for example you don't want your workflow to convert Nil or
-   ByteSlice Payloads. Within the `client.Options{}` block, declare a
-   `DataConverter` without the Nil or ByteSlice converters:
-
-   ```go
-   ClientOptions: client.Options{
-		DataConverter: converter.NewCompositeDataConverter(
-			converter.NewProtoJSONPayloadConverter(),
-			converter.NewProtoPayloadConverter(),
-			converter.NewJSONPayloadConverter(),
-		),
-   },
-   ```
-
-   Make this change to the `client.Options{}` block in both `starter/main.go` and
-   `worker/main.go`, then restart your worker and re-run your Workflow.
-2. Run `temporal workflow show -w converters_workflowID` once more to get what will
-   now be stock, unencrypted output following your Composite Data Converter logic:
-
-   ```
-   Result:
-     Status: COMPLETED
-     Output: ["Received Plain text input"]
-   ```
-
-   You may not need to use a Composite Data Converter as often as you will need
-   to override the stock Data Converter to add encryption, but if you have
-   complex Workflow logic, you may need to do both.
 
 
 ### This is the end of the exercise.
