@@ -9,7 +9,7 @@ tasks:
   - name: Worker
     command: |
       echo "waiting for server...."
-      gp ports await 7233 && gp ports await 8080 && sleep 25 && gp preview $(gp url 8080)
+      gp ports await 7233 && gp ports await 8233 && sleep 25 && gp preview $(gp url 8233)
       clear
       echo "Use this terminal to start your worker."
       source /workspace/edu-converters-go-code/.bash_aliases

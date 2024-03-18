@@ -93,8 +93,8 @@ the complete version in the `solution` subdirectory.
    ![Codec Server settings icon](images/configure-codec-server-button.png)
 
    In the Codec Server settings menu, add the path to your Codec Server, which
-   should be `http://localhost:8081` by default. You do not need to toggle the
-   user access token settings if you aren't using authentication.
+   should be `http://localhost:8081/default` by default. You do not need to
+   toggle the user access token settings if you aren't using authentication.
 
    ![Codec Server settings](images/codec-server-settings.png)
 
