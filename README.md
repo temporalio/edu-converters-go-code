@@ -13,6 +13,10 @@ Directory Name                     | Exercise
 `exercises/custom-converter`       | [Exercise 1](exercises/custom-converter/README.md)
 `exercises/codec-server`           | [Exercise 2](exercises/codec-server/README.md)
 
+Samples
+| Directory Name                     | Description                                                                                                                                     |
+| :--------------------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------- |
+| `samples/composite-converter` | [Sample of how to provide an additional Payload Converter to your Composite Converter](samples/composite-converter/README.md) |
 
 ## Reference
 The following links provide additional information that you may find helpful as you work through this course.
