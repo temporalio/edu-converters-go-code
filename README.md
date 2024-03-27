@@ -1,4 +1,4 @@
-# Code Repository for Temporal Converters (Go)
+# Code Repository for Securing Application Data in Temporal (Go)
 This repository provides code used for exercises and demonstrations
 included in the Go version of the 
 [Converters](https://learn.temporal.io/courses/converters) 
