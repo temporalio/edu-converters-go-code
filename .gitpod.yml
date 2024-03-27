@@ -1,0 +1,73 @@
+image: gitpod/workspace-full:2023-01-16-03-31-28
+tasks:
+  - name: Set up aliases 
+    init: cp .bash_aliases ~/.bash_aliases   # ensure new terminals load the aliases
+  - name: install staticcheck
+    init: go install honnef.co/go/tools/cmd/staticcheck@latest  # fix for 'Analysis Tools Missing' warning in status bar
+  - name: Go Get Fetcher # https://www.gitpod.io/docs/languages/go/#start-up-tasks
+    init: go get -v -t -d ./...
+  - name: Worker
+    command: |
+      echo "waiting for server...."
+      gp ports await 7233 && gp ports await 8233 && sleep 25 && gp preview $(gp url 8233)
+      clear
+      echo "Use this terminal to start your worker."
+      source /workspace/edu-converters-go-code/.bash_aliases
+  - name: Terminal
+    command: |
+      gp open README.md
+      clear
+      echo "Use this terminal to run commands.."
+      source /workspace/edu-converters-go-code/.bash_aliases
+    openMode: split-right
+  - name: Codec Server
+    command: |
+      gp open README.md
+      clear
+      echo "Use this terminal to run your codec server.."
+      source /workspace/edu-converters-go-code/.bash_aliases
+    openMode: split-right    
+  - name: Temporal Local Development Server
+    init: |
+      curl -sSf https://temporal.download/cli.sh | sh -s - --dir /workspace
+      # install tctl for backwards compatibility
+      mkdir -p tctl_temp
+      pushd tctl_temp
+      curl -sL -O https://github.com/temporalio/tctl/releases/download/v1.18.0/tctl_1.18.0_linux_amd64.tar.gz
+      tar zxvf tctl_1.18*
+      mv tctl /workspace/bin/tctl
+      chmod +x /workspace/bin/tctl
+      popd
+      rm -rf tctl_temp
+    command: |
+      source /workspace/edu-converters-go-code/.bash_aliases
+      export TEMPORAL_CORS_ORIGINS=http://localhost:3000
+      /workspace/bin/temporal server start-dev --db-filename $HOME/.cluster-persistence.db
+    openMode: tab-after
+
+ports:
+  - name: Temporal server
+    port: 7233
+    onOpen: ignore
+  - name: Codec server
+    port: 8081
+    onOpen: ignore
+  - name: Temporal Web UI
+    port: 8233 # temporal UI
+    description: Temporal Web UI
+    onOpen: ignore
+    visibility: private
+
+vscode:
+  extensions:
+    - golang.Go
+    - ms-python.python
+    - redhat.java
+    - vscjava.vscode-java-test
+    - vscjava.vscode-java-debug
+    - wingrunr21.vscode-ruby
+    - ms-toolsai.jupyter
+    - ms-toolsai.jupyter-keymap
+    - ms-toolsai.jupyter-renderers
+    - ms-toolsai.vscode-jupyter-cell-tags
+    - ms-toolsai.vscode-jupyter-slideshow
